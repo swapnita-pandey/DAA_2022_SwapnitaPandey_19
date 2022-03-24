@@ -16,11 +16,11 @@ int main()
     {
         for(int j = 0; j < n; j++)
         {
-            if(((a[i] - a[j]) == k) || ((a[i] - a[j]) == -1 * k))
+            if(((a[i] - a[j]) == k))
             {
                  c++;
             }
         }
     }
-    printf("%d", c/2);
+    printf("%d", c);
 }
