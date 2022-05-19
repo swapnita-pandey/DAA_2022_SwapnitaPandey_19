@@ -26,7 +26,7 @@ public class Main
 		int v = sc.nextInt();
 		int e = sc.nextInt();
 		adj = new int[v][v];
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < e; i++)
 		{
 		    System.out.println("Enter edge: ");
 		    int x = sc.nextInt();
