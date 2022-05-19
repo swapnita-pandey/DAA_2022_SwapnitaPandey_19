@@ -1,56 +1,41 @@
 import java.util.*;
-class dfs
+public class Main
 {
-    private LinkedList<Integer> adjLists[];
-    private int visited[];
-
-    dfs(int vertices)
-    {
-        adjLists = new LinkedList[vertices];
-        visited = new int[vertices];
-
-        for(int i = 0; i < vertices; i++)
-        {
-            adjLists[i] = new LinkedList<Integer>();
-        }
-    }
-
-    void addEdge(int src, int dest)
-    {
-        adjLists[src].add(dest);
-    }
-
-    void DFS(int v)
-    {
-        visited[v] = 1;
-        System.out.print(v + " ");
-
-        Iterator <Integer> ite = adjLists[v].listIterator();
-        while(ite.hasNext())
-        {
-            int adj = ite.next();
-            if(visited[adj] == 0)
-                DFS(adj);
-        }
-    }
-
-    public static void main(String args[])
-    {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the number of edges: ");
-        int e = sc.nextInt();
-        dfs g = new dfs(e);
-
-        System.out.println("Input the value of source node and destination node: ");
-        for(int i = 0; i < e; i++)
-        {
-            int src = sc.nextInt();
-            int dest = sc.nextInt();
-            g.addEdge(src, dest);
-        }
-
-        System.out.println("Enter the node to be searched: ");
-        int n = sc.nextInt();
-        g.DFS(n);
-    }
+	static int[][] adj;
+	static void addEdge(int x, int y)
+	{
+	    adj[x][y] = 1;
+	    adj[y][x] = 1;
+	}
+	static void dfs(int start, boolean[] visited)
+	{
+	    visited[start] = true;
+	    System.out.print(start + " ");
+	    for(int i = 0; i < adj[start].length; i++)
+	    {
+	        if(adj[start][i] == 1 && (!visited[i]))
+	        {
+	            dfs(i, visited);
+	        }
+	    }
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number of vertices and edges: ");
+		int v = sc.nextInt();
+		int e = sc.nextInt();
+		adj = new int[v][v];
+		for(int i = 0; i < 4; i++)
+		{
+		    System.out.println("Enter edge: ");
+		    int x = sc.nextInt();
+		    int y = sc.nextInt();
+		    addEdge(x, y);
+		}
+		
+		boolean[] visited = new boolean[v];
+		dfs(0, visited);
+		
+	}
 }
